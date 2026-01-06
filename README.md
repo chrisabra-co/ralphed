@@ -7,6 +7,10 @@
  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚══════╝╚═════╝
 ```
 
+[![npm version](https://img.shields.io/npm/v/ralphed.svg)](https://www.npmjs.com/package/ralphed)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=white)
+
 A simple bash-based workflow for autonomous AI agent execution using Claude Code. Named after the Ralph Wiggum technique - iterative, single-feature focused development with self-tracking progress.
 
 > "Me fail English? That's unpossible!" - Ralph Wiggum

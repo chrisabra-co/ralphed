@@ -1,3 +1,9 @@
 # Execution artifacts
 logs/
 progress.txt
+
+# OS
+.DS_Store
+
+# CLI package
+cli/node_modules/
