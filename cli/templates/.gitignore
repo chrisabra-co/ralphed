@@ -2,8 +2,5 @@
 logs/
 progress.txt
 
-# OS
-.DS_Store
-
-# Node
-cli/node_modules/
+# Claude Code
+CLAUDE.md

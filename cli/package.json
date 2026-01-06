@@ -1,0 +1,34 @@
+{
+  "name": "ralphed",
+  "version": "1.1.0",
+  "description": "Autonomous AI agent workflow for Claude Code using the Ralph Wiggum method",
+  "bin": {
+    "ralphed": "./bin/ralphed.js"
+  },
+  "files": [
+    "bin",
+    "templates",
+    "lib"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai",
+    "agent",
+    "automation",
+    "ralph-wiggum"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisabra-co/ralphed"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "picocolors": "^1.1.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

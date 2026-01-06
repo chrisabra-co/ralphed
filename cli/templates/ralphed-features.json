@@ -1,0 +1,62 @@
+{
+  "project": "Your Project Name",
+  "description": "Brief description of what you're building",
+  "features": [
+    {
+      "category": "setup",
+      "description": "Initialize project with your framework",
+      "steps": [
+        "Create project with appropriate CLI/template",
+        "Verify project structure is correct",
+        "Run build successfully",
+        "Run dev server and verify it works"
+      ],
+      "passes": false
+    },
+    {
+      "category": "setup",
+      "description": "Configure linting and formatting",
+      "steps": [
+        "Install and configure ESLint",
+        "Install and configure Prettier",
+        "Verify lint passes with zero warnings",
+        "Verify formatting works"
+      ],
+      "passes": false
+    },
+    {
+      "category": "database",
+      "description": "Create initial database schema",
+      "steps": [
+        "Create migration for core tables",
+        "Add appropriate indexes",
+        "Apply migration successfully",
+        "Verify tables exist"
+      ],
+      "passes": false
+    },
+    {
+      "category": "auth",
+      "description": "Implement user authentication with OAuth and session handling",
+      "model": "opus",
+      "steps": [
+        "Create login page/endpoint",
+        "Implement session management",
+        "Add protected route middleware",
+        "Test authentication flow"
+      ],
+      "passes": false
+    },
+    {
+      "category": "feature",
+      "description": "Implement core feature X",
+      "steps": [
+        "Create data model",
+        "Build API/server actions",
+        "Create UI components",
+        "Test end-to-end flow"
+      ],
+      "passes": false
+    }
+  ]
+}

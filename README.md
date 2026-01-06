@@ -96,6 +96,7 @@ plans/
 - **category**: Groups related features (setup, database, auth, etc.)
 - **description**: What the feature accomplishes
 - **steps**: Acceptance criteria / implementation steps
+- **model**: (optional) Set to `"opus"` for complex features requiring advanced reasoning
 - **passes**: Set to `true` when complete
 
 ## Usage
@@ -164,6 +165,46 @@ Include additional files in the prompt:
 ```bash
 claude -p "@plans/ralphed-features.json @plans/progress.txt @src/types.ts \
 ..."
+```
+
+## Model Switching
+
+RALPHED uses Sonnet by default and automatically falls back to Opus when needed. This saves tokens while ensuring complex features get the reasoning power they need.
+
+### How It Works
+
+1. **Default**: All features run with Sonnet (faster, cheaper)
+2. **Feature-level hint**: Add `"model": "opus"` to complex features
+3. **Self-escalation**: Claude can output `<signal>NEEDS_OPUS</signal>` if it determines the task is too complex
+4. **Failure fallback**: If Sonnet fails, the iteration automatically retries with Opus
+
+### Configuration
+
+Edit the model settings in `ralphed.sh`:
+
+```bash
+DEFAULT_MODEL="sonnet"    # Used for most features
+FALLBACK_MODEL="opus"     # Used when default fails or feature requires it
+```
+
+### When to Mark Features as Opus
+
+Use `"model": "opus"` for:
+- Complex authentication flows (OAuth, multi-provider)
+- Intricate state management logic
+- Features with many edge cases
+- Cross-cutting architectural changes
+
+The summary at the end shows how many iterations required fallback:
+
+```
+================================
+SUMMARY
+================================
+Iterations completed: 10
+Fallbacks to opus: 2
+Total time: 25m 12s
+================================
 ```
 
 ## Tips
