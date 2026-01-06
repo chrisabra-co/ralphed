@@ -1,113 +1,60 @@
 {
-  "project": "[Project Name]",
-  "description": "PRD template - populate PRD.md with actual requirements then regenerate this file",
+  "project": "Your Project Name",
+  "description": "Brief description of what you're building",
   "features": [
     {
       "category": "setup",
-      "description": "Initialize project with required technology stack",
+      "description": "Initialize project with your framework",
       "steps": [
-        "Set up frontend framework (as specified in Technical Constraints)",
-        "Set up backend framework/language",
-        "Configure database connection",
-        "Configure authentication solution",
-        "Verify development environment runs successfully"
+        "Create project with appropriate CLI/template",
+        "Verify project structure is correct",
+        "Run build successfully",
+        "Run dev server and verify it works"
+      ],
+      "passes": false
+    },
+    {
+      "category": "setup",
+      "description": "Configure linting and formatting",
+      "steps": [
+        "Install and configure ESLint",
+        "Install and configure Prettier",
+        "Verify lint passes with zero warnings",
+        "Verify formatting works"
       ],
       "passes": false
     },
     {
       "category": "database",
-      "description": "Create Entity 1 data model",
+      "description": "Create initial database schema",
       "steps": [
-        "Define Entity 1 schema with all required fields",
-        "Create database migration for Entity 1",
+        "Create migration for core tables",
+        "Add appropriate indexes",
         "Apply migration successfully",
-        "Verify table exists with correct structure"
-      ],
-      "passes": false
-    },
-    {
-      "category": "database",
-      "description": "Create Entity 2 data model",
-      "steps": [
-        "Define Entity 2 schema with all required fields",
-        "Create database migration for Entity 2",
-        "Establish relationship with Entity 1",
-        "Apply migration successfully"
-      ],
-      "passes": false
-    },
-    {
-      "category": "database",
-      "description": "Verify entity relationships and data integrity",
-      "steps": [
-        "Entity relationships work as defined in Data Model section",
-        "Data integrity constraint 1 is enforced",
-        "Data integrity constraint 2 is enforced"
+        "Verify tables exist"
       ],
       "passes": false
     },
     {
       "category": "auth",
-      "description": "Implement Role 1 user authentication",
+      "description": "Implement user authentication with OAuth and session handling",
+      "model": "opus",
       "steps": [
-        "Create user registration for Role 1",
-        "Create login/logout functionality",
+        "Create login page/endpoint",
         "Implement session management",
-        "Role 1 can achieve Goal 1",
-        "Role 1 can achieve Goal 2"
-      ],
-      "passes": false
-    },
-    {
-      "category": "auth",
-      "description": "Implement Role 2 user authentication",
-      "steps": [
-        "Create user registration for Role 2",
-        "Differentiate Role 2 permissions from Role 1",
-        "Role 2 can achieve Goal 1",
-        "Role 2 can achieve Goal 2"
+        "Add protected route middleware",
+        "Test authentication flow"
       ],
       "passes": false
     },
     {
       "category": "feature",
-      "description": "Implement Feature 5.1",
+      "description": "Implement core feature X",
       "steps": [
-        "Build API/backend for feature requirement",
-        "As a [user], I can [action] so that [benefit]",
-        "Acceptance criterion 1 passes",
-        "Acceptance criterion 2 passes"
-      ],
-      "passes": false
-    },
-    {
-      "category": "feature",
-      "description": "Implement Feature 5.2",
-      "steps": [
-        "Build API/backend for feature requirement",
-        "As a [user], I can [action] so that [benefit]",
-        "Acceptance criterion 1 passes",
-        "Acceptance criterion 2 passes"
-      ],
-      "passes": false
-    },
-    {
-      "category": "testing",
-      "description": "Verify core functionality success criteria",
-      "steps": [
-        "Feature 1 works correctly",
-        "Feature 2 works correctly",
-        "Feature 3 works correctly"
-      ],
-      "passes": false
-    },
-    {
-      "category": "testing",
-      "description": "Verify performance requirements",
-      "steps": [
-        "Performance requirement 1 is met",
-        "Performance requirement 2 is met",
-        "Architecture principles are followed"
+        "Create data model",
+        "Build API/server actions",
+        "Create UI components",
+        "Test end-to-end flow"
       ],
       "passes": false
     }
