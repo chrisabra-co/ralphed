@@ -5,5 +5,5 @@ progress.txt
 # OS
 .DS_Store
 
-# CLI package
-cli/node_modules/
+# CLI package (published separately to npm)
+cli/
