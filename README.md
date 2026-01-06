@@ -15,6 +15,12 @@ A simple bash-based workflow for autonomous AI agent execution using Claude Code
 
 > "Me fail English? That's unpossible!" - Ralph Wiggum
 
+## Credits
+
+- **Ralph Wiggum Method**: [ghuntley.com/ralph](https://ghuntley.com/ralph/)
+- **Video Demo**: [Matt Pocock on X](https://x.com/mattpocockuk/status/2008200878633931247)
+- **Background**: [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) - Anthropic Engineering
+
 ## Quick Start
 
 ```bash
@@ -206,12 +212,6 @@ Total time: 12m 34s
 Log file: /path/to/plans/logs/ralphed-20240115-143022.log
 ================================
 ```
-
-## Credits
-
-- **Ralph Wiggum Method**: [ghuntley.com/ralph](https://ghuntley.com/ralph/)
-- **Video Demo**: [Matt Pocock on X](https://x.com/mattpocockuk/status/2008200878633931247)
-- **Background**: [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) - Anthropic Engineering
 
 ## License
 
