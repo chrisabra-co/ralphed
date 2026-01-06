@@ -15,6 +15,24 @@ A simple bash-based workflow for autonomous AI agent execution using Claude Code
 
 > "Me fail English? That's unpossible!" - Ralph Wiggum
 
+## Quick Start
+
+```bash
+npx ralphed
+```
+
+The interactive setup will:
+1. Ask for a project directory
+2. Ask for your PRD or project outline
+3. Optionally auto-generate features from your PRD using Claude Code
+4. Set up all the files you need
+
+Then run `/sandbox` in Claude Code and start building:
+
+```bash
+./plans/ralphed.sh 10
+```
+
 ## Overview
 
 This pattern enables Claude Code to work through a feature list autonomously, completing one feature per iteration, updating progress, and committing changes. It's designed for:
@@ -23,50 +41,6 @@ This pattern enables Claude Code to work through a feature list autonomously, co
 - Systematic feature implementation
 - Self-documenting progress
 - Hands-off development sessions
-
-## Files
-
-```
-plans/
-├── ralphed.sh              # Main execution script
-├── ralphed-features.json   # Feature list with completion tracking
-├── PRD.md                  # Your project requirements document
-├── progress.txt            # Auto-generated progress log (gitignored)
-└── logs/                   # Execution logs (gitignored)
-```
-
-## Quick Start
-
-### 1. Prerequisites
-
-- [Claude Code CLI](https://claude.ai/code) installed and authenticated
-- Sandbox mode enabled: run `/sandbox` in Claude Code first
-
-### 2. Setup
-
-```bash
-# Copy template files to your project
-cp -r plans/ your-project/plans/
-
-# Edit the feature list for your project
-vim plans/ralphed-features.json
-
-# Create or edit your PRD
-vim plans/PRD.md
-```
-
-### 3. Run
-
-```bash
-# Run N iterations (one feature per iteration)
-./plans/ralphed.sh 10
-
-# Run a single iteration
-./plans/ralphed.sh 1
-
-# Let it run until complete (set high number)
-./plans/ralphed.sh 100
-```
 
 ## How It Works
 
@@ -81,6 +55,17 @@ Each iteration, the script:
 7. Creates a git commit
 
 The loop continues until all features are complete or the iteration limit is reached.
+
+## Files
+
+```
+plans/
+├── ralphed.sh              # Main execution script
+├── ralphed-features.json   # Feature list with completion tracking
+├── PRD.md                  # Your project requirements document
+├── progress.txt            # Auto-generated progress log (gitignored)
+└── logs/                   # Execution logs (gitignored)
+```
 
 ## Feature List Format
 
@@ -107,6 +92,48 @@ The loop continues until all features are complete or the iteration limit is rea
 - **steps**: Acceptance criteria / implementation steps
 - **passes**: Set to `true` when complete
 
+## Usage
+
+```bash
+# Run N iterations (one feature per iteration)
+./plans/ralphed.sh 10
+
+# Run a single iteration
+./plans/ralphed.sh 1
+
+# Let it run until complete (set high number)
+./plans/ralphed.sh 100
+```
+
+## Manual Setup
+
+If you prefer to set up manually instead of using `npx ralphed`:
+
+### 1. Prerequisites
+
+- [Claude Code CLI](https://claude.ai/code) installed and authenticated
+- Sandbox mode enabled: run `/sandbox` in Claude Code first
+
+### 2. Setup
+
+```bash
+# Clone or copy template files to your project
+git clone https://github.com/chrisabra-co/ralphed.git
+cp -r ralphed/plans/ your-project/plans/
+
+# Edit the feature list for your project
+vim plans/ralphed-features.json
+
+# Create or edit your PRD
+vim plans/PRD.md
+```
+
+### 3. Run
+
+```bash
+./plans/ralphed.sh 10
+```
+
 ## Customization
 
 ### Modify the Prompt
@@ -129,7 +156,7 @@ Your custom instructions here..."
 Include additional files in the prompt:
 
 ```bash
-claude -p "@plans/ralph-features.json @plans/progress.txt @src/types.ts \
+claude -p "@plans/ralphed-features.json @plans/progress.txt @src/types.ts \
 ..."
 ```
 
