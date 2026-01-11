@@ -156,7 +156,15 @@ Guidelines:
 - Categories: setup, database, auth, api, ui, feature, testing, etc.
 - Steps should be acceptance criteria
 - All features start with passes: false
-- Model field is OPTIONAL - only add "model": "opus" for complex features that need advanced reasoning:
+
+IMPORTANT - Topic Scope Test:
+Each feature MUST pass this test: describable in one sentence WITHOUT conjunctions (and, or, but).
+- GOOD: "The color extraction system analyzes images to identify dominant colors"
+- BAD: "Handle authentication, profiles, and billing" (split into 3 features!)
+If a feature has multiple concerns, split it into separate features.
+
+Model field guidance:
+- Model field is OPTIONAL - only add "model": "opus" for complex features:
   * Complex auth flows (OAuth, multi-provider, session edge cases)
   * Intricate state management or data flow logic
   * Features with many edge cases or cross-cutting concerns
@@ -208,10 +216,17 @@ Write the output directly to: ${featuresPath}`;
   });
 
   console.log('');
+  console.log(pc.bold('Key files:'));
+  console.log(pc.dim('  AGENTS.md              - Operational guide (add project conventions here)'));
+  console.log(pc.dim('  IMPLEMENTATION_PLAN.md - Task tracking (updated each iteration)'));
+  console.log(pc.dim('  PROMPT_plan.md         - Planning mode instructions'));
+  console.log(pc.dim('  PROMPT_build.md        - Building mode instructions'));
+  console.log('');
   console.log(pc.dim('Models: Uses Sonnet by default, auto-falls back to Opus when needed.'));
   console.log(pc.dim('        Add "model": "opus" to complex features, or let Claude self-escalate.'));
   console.log('');
   console.log(pc.dim('Learn more: https://github.com/chrisabra-co/ralphed'));
+  console.log(pc.dim('Methodology: https://github.com/ghuntley/how-to-ralph-wiggum'));
   console.log('');
 }
 
