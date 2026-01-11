@@ -80,7 +80,15 @@ async function main() {
   console.log(pc.green('✓') + ` Created ${pc.dim('logs/')}`);
 
   // Copy template files
-  const templateFiles = ['ralphed.sh', 'ralphed-features.json', '.gitignore'];
+  const templateFiles = [
+    'ralphed.sh',
+    'ralphed-features.json',
+    '.gitignore',
+    'AGENTS.md',
+    'IMPLEMENTATION_PLAN.md',
+    'PROMPT_plan.md',
+    'PROMPT_build.md'
+  ];
 
   for (const file of templateFiles) {
     const src = path.join(TEMPLATES_DIR, file);
@@ -191,7 +199,8 @@ Write the output directly to: ${featuresPath}`;
     response.prdPath ? null : `Edit ${pc.cyan('PRD.md')} with your project requirements`,
     response.autoGenerate && prdContent ? null : `Edit ${pc.cyan('ralphed-features.json')} with your features`,
     `Run ${pc.cyan('/sandbox')} in Claude Code to enable bash auto-allow`,
-    `Start building: ${pc.cyan(`cd ${response.directory} && ./ralphed.sh 10`)}`
+    `Run planning first: ${pc.cyan(`cd ${response.directory} && ./ralphed.sh --mode plan 1`)}`,
+    `Start building: ${pc.cyan('./ralphed.sh 10')}`
   ].filter(Boolean);
 
   steps.forEach((step, i) => {
