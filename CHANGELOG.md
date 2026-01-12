@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-01-11
+
+### Added
+
+- **Dual-mode operation**: `--mode plan` for gap analysis, `--mode build` for implementation (default)
+- **AGENTS.md**: Operational guide loaded each iteration (project conventions, learnings)
+- **IMPLEMENTATION_PLAN.md**: Structured task tracking (completed/pending/discovered issues)
+- **PROMPT_plan.md**: Instructions for planning mode - gap analysis only
+- **PROMPT_build.md**: Instructions for building mode - implementation and validation
+- **Git tags**: Creates tags on successful build iterations (`ralph-YYYYMMDD-HHMMSS`)
+- **Type checking**: Added `TYPE_CMD` configuration for type validation
+- **Topic scope guidance**: Documentation for single-concern feature descriptions
+- Reference to official methodology: [github.com/ghuntley/how-to-ralph-wiggum](https://github.com/ghuntley/how-to-ralph-wiggum)
+
+### Changed
+
+- `ralphed.sh` completely rewritten for dual-mode support
+- Prompt now includes `AGENTS.md`, `IMPLEMENTATION_PLAN.md`, and mode-specific instructions
+- CLI setup now copies all new template files
+- CLI next steps updated to recommend planning before building
+- README extensively updated with new features and methodology alignment
+- Auto-creates missing `AGENTS.md` and `IMPLEMENTATION_PLAN.md` on first run
+
+### Fixed
+
+- Better alignment with official Ralph Wiggum methodology
+
 ## [1.1.0] - 2025-01-06
 
 ### Added
