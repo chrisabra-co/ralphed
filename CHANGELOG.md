@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-01-16
+
+### Added
+
+- **Folder support for PRD**: Can now point to a folder of documents instead of a single file
+  - CLI detects if path is a directory and passes it to Claude with `@folder/` syntax
+  - Claude reads all documents in the folder to generate the implementation plan
+
 ## [2.1.0] - 2026-01-16
 
 ### Changed

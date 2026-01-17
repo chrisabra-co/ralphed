@@ -41,7 +41,7 @@ async function main() {
     {
       type: 'text',
       name: 'prdPath',
-      message: 'Path to PRD or project outline (optional)',
+      message: 'Path to PRD file or folder (optional)',
       initial: ''
     },
     {
@@ -105,13 +105,21 @@ async function main() {
     }
   }
 
-  // Handle PRD
-  let prdContent = null;
+  // Handle PRD (can be a file or folder)
+  let prdExists = false;
+  let prdIsDirectory = false;
   if (response.prdPath && fs.existsSync(response.prdPath)) {
-    prdContent = fs.readFileSync(response.prdPath, 'utf-8');
-    const prdDest = path.join(targetDir, 'PRD.md');
-    fs.copyFileSync(response.prdPath, prdDest);
-    console.log(pc.green('✓') + ` Copied PRD to ${pc.dim('PRD.md')}`);
+    prdExists = true;
+    prdIsDirectory = fs.statSync(response.prdPath).isDirectory();
+
+    if (prdIsDirectory) {
+      console.log(pc.green('✓') + ` Using PRD folder: ${pc.dim(response.prdPath)}`);
+    } else {
+      // Single file - copy it
+      const prdDest = path.join(targetDir, 'PRD.md');
+      fs.copyFileSync(response.prdPath, prdDest);
+      console.log(pc.green('✓') + ` Copied PRD to ${pc.dim('PRD.md')}`);
+    }
   } else if (!response.prdPath) {
     // Copy template PRD
     const templatePrd = path.join(TEMPLATES_DIR, 'PRD.md');
@@ -121,17 +129,22 @@ async function main() {
     }
   }
 
-  // Auto-generate features from PRD
-  if (response.autoGenerate && prdContent) {
+  // Auto-generate features from PRD (file or folder)
+  if (response.autoGenerate && prdExists) {
     console.log('');
     console.log(pc.cyan('Generating features from PRD...'));
     console.log(pc.dim('This will run Claude Code to parse your PRD.\n'));
 
     const planPath = path.join(targetDir, 'IMPLEMENTATION_PLAN.md');
 
-    const claudePrompt = `@${response.prdPath}
+    const prdReference = prdIsDirectory ? `@${response.prdPath}/` : `@${response.prdPath}`;
+    const parseInstruction = prdIsDirectory
+      ? 'Parse all documents in this folder'
+      : 'Parse this PRD/project outline';
 
-Parse this PRD/project outline and generate an IMPLEMENTATION_PLAN.md file.
+    const claudePrompt = `${prdReference}
+
+${parseInstruction} and generate an IMPLEMENTATION_PLAN.md file.
 
 Output a Markdown file with this structure:
 
@@ -215,7 +228,7 @@ Write the output directly to: ${planPath}`;
       });
     } catch (error) {
       console.log(pc.yellow('⚠') + ` Could not auto-generate features: ${error.message}`);
-      console.log(pc.dim('  You can manually edit ralphed-features.json'));
+      console.log(pc.dim('  You can manually edit IMPLEMENTATION_PLAN.md'));
     }
   }
 
@@ -226,7 +239,7 @@ Write the output directly to: ${planPath}`;
 
   const steps = [
     response.prdPath ? null : `Edit ${pc.cyan('PRD.md')} with your project requirements`,
-    response.autoGenerate && prdContent ? null : `Edit ${pc.cyan('IMPLEMENTATION_PLAN.md')} with your features`,
+    response.autoGenerate && prdExists ? null : `Edit ${pc.cyan('IMPLEMENTATION_PLAN.md')} with your features`,
     `Run ${pc.cyan('/sandbox')} in Claude Code to enable bash auto-allow`,
     `Run planning first: ${pc.cyan(`cd ${response.directory} && ./ralphed.sh --mode plan 1`)}`,
     `Start building: ${pc.cyan('./ralphed.sh 10')}`
