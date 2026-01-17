@@ -1,6 +1,6 @@
 {
   "name": "ralphed",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Autonomous AI agent workflow for Claude Code using the Ralph Wiggum method",
   "bin": {
     "ralphed": "./bin/ralphed.js"

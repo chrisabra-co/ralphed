@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-01-16
+
+### Changed
+
+- **Consolidated to Markdown-only**: Removed `ralphed-features.json` in favor of unified `IMPLEMENTATION_PLAN.md`
+  - Features now defined directly in IMPLEMENTATION_PLAN.md with Markdown checkboxes (`- [ ]` / `- [x]`)
+  - ~40-60% more token-efficient per [ghuntley's Ralph Wiggum recommendations](https://ghuntley.com/ralph/)
+- `[OPUS]` tag on category headings replaces `"model": "opus"` JSON field
+- Updated `PROMPT_build.md` to reference only IMPLEMENTATION_PLAN.md
+- CLI auto-generation now outputs Markdown features directly
+- Added CLAUDE.md for Claude Code guidance
+
+### Removed
+
+- `ralphed-features.json` - consolidated into IMPLEMENTATION_PLAN.md
+
 ## [2.0.0] - 2026-01-11
 
 ### Added

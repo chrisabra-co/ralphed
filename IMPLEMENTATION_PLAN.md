@@ -1,32 +1,58 @@
-# Implementation Plan
+# Your Project Name
 
-This file tracks task progress across iterations. Update after each iteration.
+Brief description of what you're building.
 
-## Current Focus
+---
 
-<!-- The feature currently being worked on -->
+## setup
 
-## Completed
+### Initialize project with your framework
+- [ ] Create project with appropriate CLI/template
+- [ ] Verify project structure is correct
+- [ ] Run build successfully
+- [ ] Run dev server and verify it works
 
-<!-- Mark completed items with commit hash -->
-<!-- - [x] Initialize project (abc1234) -->
+### Configure linting and formatting
+- [ ] Install and configure ESLint
+- [ ] Install and configure Prettier
+- [ ] Verify lint passes with zero warnings
+- [ ] Verify formatting works
 
-## In Progress
+---
 
-<!-- Current task being worked on -->
-<!-- - [ ] Implement user authentication -->
+## database
 
-## Pending
+### Create initial database schema
+- [ ] Create migration for core tables
+- [ ] Add appropriate indexes
+- [ ] Apply migration successfully
+- [ ] Verify tables exist
 
-<!-- Remaining tasks in priority order -->
-<!-- - [ ] Add database schema -->
-<!-- - [ ] Create API endpoints -->
+---
+
+## auth [OPUS]
+
+### Implement user authentication with OAuth and session handling
+- [ ] Create login page/endpoint
+- [ ] Implement session management
+- [ ] Add protected route middleware
+- [ ] Test authentication flow
+
+---
+
+## feature
+
+### Implement core feature X
+- [ ] Create data model
+- [ ] Build API/server actions
+- [ ] Create UI components
+- [ ] Test end-to-end flow
+
+---
 
 ## Discovered Issues
 
 <!-- Issues found during implementation that need addressing -->
-<!-- - Rate limiting not implemented on auth endpoints -->
-<!-- - Missing error handling in data fetcher -->
 
 ## Notes
 

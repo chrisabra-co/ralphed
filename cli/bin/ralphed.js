@@ -82,7 +82,6 @@ async function main() {
   // Copy template files
   const templateFiles = [
     'ralphed.sh',
-    'ralphed-features.json',
     '.gitignore',
     'AGENTS.md',
     'IMPLEMENTATION_PLAN.md',
@@ -128,34 +127,56 @@ async function main() {
     console.log(pc.cyan('Generating features from PRD...'));
     console.log(pc.dim('This will run Claude Code to parse your PRD.\n'));
 
-    const featuresPath = path.join(targetDir, 'ralphed-features.json');
+    const planPath = path.join(targetDir, 'IMPLEMENTATION_PLAN.md');
 
     const claudePrompt = `@${response.prdPath}
 
-Parse this PRD/project outline and generate a ralphed-features.json file.
+Parse this PRD/project outline and generate an IMPLEMENTATION_PLAN.md file.
 
-Output a JSON file with this structure:
-{
-  "project": "Project Name from PRD",
-  "description": "Brief description from PRD",
-  "features": [
-    {
-      "category": "category name (e.g., setup, database, auth, feature)",
-      "description": "What this feature accomplishes",
-      "model": "opus (only for complex features)",
-      "steps": ["Step 1", "Step 2", "..."],
-      "passes": false
-    }
-  ]
-}
+Output a Markdown file with this structure:
+
+# Project Name from PRD
+
+Brief description from PRD.
+
+---
+
+## category-name
+
+### Feature description
+- [ ] Step 1
+- [ ] Step 2
+- [ ] Step 3
+
+### Another feature in same category
+- [ ] Step 1
+- [ ] Step 2
+
+---
+
+## another-category [OPUS]
+
+### Complex feature requiring advanced reasoning
+- [ ] Step 1
+- [ ] Step 2
+
+---
+
+## Discovered Issues
+
+<!-- Issues found during implementation -->
+
+## Notes
+
+<!-- Implementation decisions -->
 
 Guidelines:
 - Break down the PRD into small, atomic features
-- Each feature should be completable in one iteration
+- Each feature (heading + checkboxes) should be completable in one iteration
 - Order features by dependency (foundational first)
 - Categories: setup, database, auth, api, ui, feature, testing, etc.
-- Steps should be acceptance criteria
-- All features start with passes: false
+- Steps (checkboxes) should be acceptance criteria
+- All tasks start unchecked: - [ ]
 
 IMPORTANT - Topic Scope Test:
 Each feature MUST pass this test: describable in one sentence WITHOUT conjunctions (and, or, but).
@@ -163,15 +184,15 @@ Each feature MUST pass this test: describable in one sentence WITHOUT conjunctio
 - BAD: "Handle authentication, profiles, and billing" (split into 3 features!)
 If a feature has multiple concerns, split it into separate features.
 
-Model field guidance:
-- Model field is OPTIONAL - only add "model": "opus" for complex features:
+[OPUS] tag guidance:
+- Add [OPUS] tag after category name ONLY for complex features:
   * Complex auth flows (OAuth, multi-provider, session edge cases)
   * Intricate state management or data flow logic
   * Features with many edge cases or cross-cutting concerns
   * Architectural decisions affecting multiple parts of the codebase
-- Most features should NOT have a model field (defaults to sonnet)
+- Most categories should NOT have the [OPUS] tag (defaults to sonnet)
 
-Write the output directly to: ${featuresPath}`;
+Write the output directly to: ${planPath}`;
 
     try {
       const claude = spawn('claude', ['--permission-mode', 'acceptEdits', '-p', claudePrompt], {
@@ -205,7 +226,7 @@ Write the output directly to: ${featuresPath}`;
 
   const steps = [
     response.prdPath ? null : `Edit ${pc.cyan('PRD.md')} with your project requirements`,
-    response.autoGenerate && prdContent ? null : `Edit ${pc.cyan('ralphed-features.json')} with your features`,
+    response.autoGenerate && prdContent ? null : `Edit ${pc.cyan('IMPLEMENTATION_PLAN.md')} with your features`,
     `Run ${pc.cyan('/sandbox')} in Claude Code to enable bash auto-allow`,
     `Run planning first: ${pc.cyan(`cd ${response.directory} && ./ralphed.sh --mode plan 1`)}`,
     `Start building: ${pc.cyan('./ralphed.sh 10')}`
@@ -223,7 +244,7 @@ Write the output directly to: ${featuresPath}`;
   console.log(pc.dim('  PROMPT_build.md        - Building mode instructions'));
   console.log('');
   console.log(pc.dim('Models: Uses Sonnet by default, auto-falls back to Opus when needed.'));
-  console.log(pc.dim('        Add "model": "opus" to complex features, or let Claude self-escalate.'));
+  console.log(pc.dim('        Add [OPUS] tag to complex feature categories, or let Claude self-escalate.'));
   console.log('');
   console.log(pc.dim('Learn more: https://github.com/chrisabra-co/ralphed'));
   console.log(pc.dim('Methodology: https://github.com/ghuntley/how-to-ralph-wiggum'));

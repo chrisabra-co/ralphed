@@ -54,10 +54,9 @@ if [[ "$MODE" != "plan" && "$MODE" != "build" ]]; then
 fi
 
 # Configuration - modify these as needed
-FEATURES_FILE="$SCRIPT_DIR/ralphed-features.json"
+PLAN_FILE="$SCRIPT_DIR/IMPLEMENTATION_PLAN.md"
 PROGRESS_FILE="$SCRIPT_DIR/progress.txt"
 AGENTS_FILE="$SCRIPT_DIR/AGENTS.md"
-PLAN_FILE="$SCRIPT_DIR/IMPLEMENTATION_PLAN.md"
 PROMPT_FILE="$SCRIPT_DIR/PROMPT_${MODE}.md"
 LOG_DIR="$SCRIPT_DIR/logs"
 LOG_FILE="$LOG_DIR/ralphed-$(date '+%Y%m%d-%H%M%S').log"
@@ -135,7 +134,7 @@ build_prompt() {
     fi
   fi
 
-  echo "@${FEATURES_FILE} @${AGENTS_FILE} @${PLAN_FILE} @${PROGRESS_FILE} ${prompt_content}"
+  echo "@${PLAN_FILE} @${AGENTS_FILE} @${PROGRESS_FILE} ${prompt_content}"
 }
 
 # Run Claude with specified model, returns exit code
@@ -180,7 +179,6 @@ trap 'echo ""; echo "Interrupted!"; show_summary; exit 130' INT
 
 echo "RALPHED - Ralph Wiggum Execution"
 echo "Mode: $MODE"
-echo "Features: $FEATURES_FILE"
 echo "Plan: $PLAN_FILE"
 if [ "$MODE" = "build" ]; then
   echo "Models: $DEFAULT_MODEL (default) -> $FALLBACK_MODEL (fallback)"
