@@ -30,7 +30,7 @@ npx ralphed
 
 The interactive setup will:
 1. Ask for a project directory
-2. Ask for your PRD or project outline
+2. Ask for your PRD — can be a **single file or a folder** of documents
 3. Optionally auto-generate features from your PRD using Claude Code
 4. Set up all the files you need
 
