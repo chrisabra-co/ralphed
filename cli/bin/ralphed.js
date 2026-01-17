@@ -79,29 +79,29 @@ async function main() {
   fs.writeFileSync(path.join(logsDir, '.gitkeep'), '');
   console.log(pc.green('✓') + ` Created ${pc.dim('logs/')}`);
 
-  // Copy template files
+  // Copy template files (source -> destination mapping for renamed files)
   const templateFiles = [
-    'ralphed.sh',
-    '.gitignore',
-    'AGENTS.md',
-    'IMPLEMENTATION_PLAN.md',
-    'PROMPT_plan.md',
-    'PROMPT_build.md'
+    { src: 'ralphed.sh', dest: 'ralphed.sh' },
+    { src: 'gitignore', dest: '.gitignore' },  // Renamed for npm publishing
+    { src: 'AGENTS.md', dest: 'AGENTS.md' },
+    { src: 'IMPLEMENTATION_PLAN.md', dest: 'IMPLEMENTATION_PLAN.md' },
+    { src: 'PROMPT_plan.md', dest: 'PROMPT_plan.md' },
+    { src: 'PROMPT_build.md', dest: 'PROMPT_build.md' }
   ];
 
   for (const file of templateFiles) {
-    const src = path.join(TEMPLATES_DIR, file);
-    const dest = path.join(targetDir, file);
+    const src = path.join(TEMPLATES_DIR, file.src);
+    const dest = path.join(targetDir, file.dest);
 
     if (fs.existsSync(src)) {
       fs.copyFileSync(src, dest);
 
       // Make shell script executable
-      if (file.endsWith('.sh')) {
+      if (file.dest.endsWith('.sh')) {
         fs.chmodSync(dest, '755');
       }
 
-      console.log(pc.green('✓') + ` Created ${pc.dim(file)}`);
+      console.log(pc.green('✓') + ` Created ${pc.dim(file.dest)}`);
     }
   }
 
