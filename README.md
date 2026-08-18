@@ -1,3 +1,5 @@
+
+
 ```
  ██████╗  █████╗ ██╗     ██████╗ ██╗  ██╗███████╗██████╗
  ██╔══██╗██╔══██╗██║     ██╔══██╗██║  ██║██╔════╝██╔══██╗
@@ -174,6 +176,7 @@ If you prefer to set up manually instead of using `npx ralphed`:
 
 ### 1. Prerequisites
 
+- Node.js 18+
 - [Claude Code CLI](https://claude.ai/code) installed and authenticated
 - Sandbox mode enabled: run `/sandbox` in Claude Code first
 
@@ -348,3 +351,4 @@ Log file: /path/to/plans/logs/ralphed-20240115-143122.log
 ## License
 
 MIT - Use however you like.
+```
